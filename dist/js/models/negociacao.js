@@ -1,4 +1,4 @@
-class Negocioacoes {
+class Negocioacao {
     constructor(data, quantidade, valor) {
         this._data = data;
         this._quantidade = quantidade;
@@ -17,4 +17,4 @@ class Negocioacoes {
         return this._valor * this._quantidade;
     }
 }
-export default Negocioacoes;
+export default Negocioacao;

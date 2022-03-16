@@ -1,4 +1,4 @@
-import Negocioacoes from "../models/negociacao.js";
+import Negocioacao from "../models/negociacao.js";
 
 export class NegociacaoControler {
     private inputData: HTMLInputElement;
@@ -13,14 +13,22 @@ export class NegociacaoControler {
 
     adiciona(): void {
         const negociacao = this.criaNegociacao();
+        this.limparFormulario()
         console.log(negociacao)
     }
     
-    criaNegociacao(): Negocioacoes {
+    criaNegociacao(): Negocioacao {
         const exp = /-/g
         const date = new Date(this.inputData.value.replace(exp, ','));
         const quantidade = parseInt(this.inputQuantidade.value);
         const valor = parseFloat(this.inputValor.value); 
-        return new Negocioacoes(date, quantidade, valor);
+        return new Negocioacao(date, quantidade, valor);
+    }
+
+    limparFormulario(): void {
+        this.inputData.value = "";
+        this.inputQuantidade.value = "";
+        this.inputValor.value = "";
+        this.inputData.focus()
     }
 }
