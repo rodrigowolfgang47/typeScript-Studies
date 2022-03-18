@@ -1,6 +1,8 @@
 import Negocioacao from "../models/negociacao.js";
+import Negociacoes from "../models/negociacoes.js";
 export class NegociacaoControler {
     constructor() {
+        this.negociacoes = new Negociacoes();
         this.inputData = document.querySelector("#data");
         this.inputQuantidade = document.querySelector("#quantidade");
         this.inputValor = document.querySelector("#valor");
@@ -8,7 +10,8 @@ export class NegociacaoControler {
     adiciona() {
         const negociacao = this.criaNegociacao();
         this.limparFormulario();
-        console.log(negociacao);
+        this.negociacoes.adiciona(negociacao);
+        console.log(this.negociacoes.lista());
     }
     criaNegociacao() {
         const exp = /-/g;
