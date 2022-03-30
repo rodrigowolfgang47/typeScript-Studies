@@ -1,9 +1,14 @@
 export default class View {
     constructor(seletor) {
-        this.elemento = document.querySelector(seletor);
+        const elemento = document.querySelector(seletor);
+        if (elemento) {
+            this.elemento = elemento;
+        }
+        else {
+            throw Error(`Seletor ${seletor} não existe no DOM. verifique!`);
+        }
     }
     update(model) {
-        console.log(this.template(model));
         this.elemento.innerHTML = this.template(model);
     }
 }

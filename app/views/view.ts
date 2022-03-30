@@ -2,13 +2,17 @@ export default abstract class View<T> {
     protected elemento: HTMLElement;
 
     constructor(seletor: string){
-        this.elemento = document.querySelector(seletor);
+        const elemento = document.querySelector(seletor); 
+        if(elemento){
+            this.elemento = elemento as HTMLElement;
+        }else{
+            throw Error(`Seletor ${seletor} não existe no DOM. verifique!`)
+        }
     }
 
-    abstract template(model: T):string;
+    protected abstract template(model: T):string;
 
-    update(model: T): void{
-        console.log(this.template(model))
+     public update(model: T): void{
         this.elemento.innerHTML = this.template(model);
     }
 
